@@ -1,0 +1,52 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "brnbio/laravel-starterkit",
+    "description": "A modern Laravel starter kit with InertiaJS, Vue 3, Tailwind CSS, and Laravel Sail pre-configured for rapid application development",
+    "type": "project",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "starter-kit",
+        "inertiajs",
+        "vue3",
+        "tailwindcss",
+        "laravel-sail",
+        "docker",
+        "spa",
+        "boilerplate",
+        "scaffold",
+        "template"
+    ],
+    "homepage": "https://github.com/brnbio/laravel-starterkit",
+    "support": {
+        "issues": "https://github.com/brnbio/laravel-starterkit/issues",
+        "source": "https://github.com/brnbio/laravel-starterkit"
+    },
+    "authors": [
+        {
+            "name": "brainbo",
+            "homepage": "https://github.com/brnbio"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "laravel/sail": "^v1.46.0"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

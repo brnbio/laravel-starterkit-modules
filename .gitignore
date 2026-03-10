@@ -1,0 +1,4 @@
+/.idea/*
+!/.idea/icon.svg
+/vendor
+.env
