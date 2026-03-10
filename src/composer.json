@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "require": {
         "php": "^8.5",
+        "ext-pdo": "*",
         "inertiajs/inertia-laravel": "^v3.0.0-beta",
-        "laracasts/flash": "^3.2.5",
         "laravel/framework": "^v12.53.0",
         "laravel/tinker": "^v2.11.1",
         "league/flysystem-aws-s3-v3": "^3.32.0",

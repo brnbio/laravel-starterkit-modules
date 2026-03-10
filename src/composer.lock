@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfea1af8b6e04df454dd62657e0c76b9",
+    "content-hash": "cbcb3f4533444aedfab52a5e39c521e3",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.372.2",
+            "version": "3.372.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "d1885c8c5db03c2a23121e6df58ef5693df41b95"
+                "reference": "d207d2ca972c9b10674e535dacd4a5d956a80bad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d1885c8c5db03c2a23121e6df58ef5693df41b95",
-                "reference": "d1885c8c5db03c2a23121e6df58ef5693df41b95",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d207d2ca972c9b10674e535dacd4a5d956a80bad",
+                "reference": "d207d2ca972c9b10674e535dacd4a5d956a80bad",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.372.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.372.3"
             },
-            "time": "2026-03-09T18:21:50+00:00"
+            "time": "2026-03-10T18:07:21+00:00"
         },
         {
             "name": "brick/math",
@@ -1350,63 +1350,6 @@
                 "source": "https://github.com/inertiajs/inertia-laravel/tree/v3.0.0-beta2"
             },
             "time": "2026-03-05T15:12:11+00:00"
-        },
-        {
-            "name": "laracasts/flash",
-            "version": "3.2.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laracasts/flash.git",
-                "reference": "29a2d76da837593dc5fb21a6bbe5f2025188a108"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/flash/zipball/29a2d76da837593dc5fb21a6bbe5f2025188a108",
-                "reference": "29a2d76da837593dc5fb21a6bbe5f2025188a108",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "dev-master",
-                "phpunit/phpunit": "^6.1|^9.5.10|^10.5"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Flash": "Laracasts\\Flash\\Flash"
-                    },
-                    "providers": [
-                        "Laracasts\\Flash\\FlashServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/Laracasts/Flash/functions.php"
-                ],
-                "psr-0": {
-                    "Laracasts\\Flash": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeffrey Way",
-                    "email": "jeffrey@laracasts.com"
-                }
-            ],
-            "description": "Easy flash notifications",
-            "support": {
-                "source": "https://github.com/laracasts/flash/tree/3.2.5"
-            },
-            "time": "2026-02-24T22:05:36+00:00"
         },
         {
             "name": "laravel/framework",
@@ -10831,7 +10774,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.5"
+        "php": "^8.5",
+        "ext-pdo": "*"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
