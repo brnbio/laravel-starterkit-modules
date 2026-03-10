@@ -15,7 +15,6 @@ A modern Laravel starter kit with InertiaJS, Vue 3, Tailwind CSS, and Laravel Sa
 
 - docker
 - git
-- php 8.4
 - composer
 
 ## 📥 Installation
@@ -23,14 +22,14 @@ A modern Laravel starter kit with InertiaJS, Vue 3, Tailwind CSS, and Laravel Sa
 Create a new project using Composer:
 
 ```bash
-composer create-project brnbio/laravel-starterkit my-project
+composer create-project brnbio/laravel-starterkit-modules my-project
 cd my-project
 ```
 
 Or clone the repository:
 
 ```bash
-git clone https://github.com/brnbio/laravel-starterkit.git my-project
+git clone https://github.com/brnbio/laravel-starterkit-modules.git my-project
 cd my-project
 ```
 
