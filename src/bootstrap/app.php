@@ -25,7 +25,6 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withProviders([
         AppServiceProvider::class,
-        App\Providers\FortifyServiceProvider::class,
     ])
     ->withExceptions(function(Exceptions $exceptions) {})
     ->create();

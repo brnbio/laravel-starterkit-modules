@@ -1,0 +1,16 @@
+{
+    "name": "starterkit/module-portal",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "Portal\\": "app/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Portal\\Providers\\PortalServiceProvider"
+            ]
+        }
+    }
+}
