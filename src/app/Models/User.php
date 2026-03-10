@@ -34,9 +34,8 @@ final class User extends Model implements
     use CanResetPassword;
     use HasFactory;
     use Notifiable;
-    use TwoFactorAuthenticatable;
 
-    public const string TABLE = 'core_users';
+    public const string TABLE = 'users';
 
     public const string ATTRIBUTE_NAME = 'name';
     public const string ATTRIBUTE_EMAIL = 'email';

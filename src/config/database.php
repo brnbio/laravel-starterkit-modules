@@ -123,7 +123,7 @@ return [
     */
 
     'migrations' => [
-        'table'                  => 'core_migrations',
+        'table'                  => 'migrations',
         'update_date_on_publish' => true,
     ],
 
