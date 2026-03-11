@@ -83,6 +83,7 @@ declare module 'vue' {
     IconMaterialSymbolsHome: typeof import('~icons/material-symbols/home')['default']
     IconMaterialSymbolsHomeOutline: typeof import('~icons/material-symbols/home-outline')['default']
     IconMaterialSymbolsHomeOutlineRounded: typeof import('~icons/material-symbols/home-outline-rounded')['default']
+    IconMaterialSymbolsProgressActivity: typeof import('~icons/material-symbols/progress-activity')['default']
     Input: typeof import('./resources/js/components/ui/input/Input.vue')['default']
     InputGroup: typeof import('./resources/js/components/ui/input-group/InputGroup.vue')['default']
     InputGroupAddon: typeof import('./resources/js/components/ui/input-group/InputGroupAddon.vue')['default']
