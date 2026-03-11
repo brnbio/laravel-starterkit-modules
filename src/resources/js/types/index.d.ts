@@ -1,4 +1,5 @@
 import { User } from "@/types/models";
+import { RouteDefinition } from "@/wayfinder";
 
 export interface BreadcrumbItem {
     title: string;
@@ -9,7 +10,7 @@ export type BreadcrumbItemType = BreadcrumbItem;
 
 export interface NavItem {
     title: string;
-    href: string;
+    href: RouteDefinition;
     icon?: string;
     isActive?: boolean;
     identifier?: string;

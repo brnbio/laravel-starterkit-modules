@@ -11,6 +11,6 @@ final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory()->create([ User::ATTRIBUTE_EMAIL => 'john.doe@example.org' ]);
+        User::factory()->create([ User::ATTRIBUTE_EMAIL => 'john.doe@example.internal' ]);
     }
 }

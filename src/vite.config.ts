@@ -1,4 +1,5 @@
 import inertia from "@inertiajs/vite";
+import { wayfinder } from "@laravel/vite-plugin-wayfinder";
 import tailwindcss from "@tailwindcss/vite";
 import vue from "@vitejs/plugin-vue";
 import laravel from "laravel-vite-plugin";
@@ -15,6 +16,10 @@ export default defineConfig({
                 "modules/module-portal/resources/js/portal.ts"
             ],
             refresh: true,
+        }),
+        wayfinder({
+            path: "resources/js/wayfinder",
+            actions: false
         }),
         tailwindcss(),
         inertia(),

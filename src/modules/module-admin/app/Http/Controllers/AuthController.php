@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Admin\Http\Controllers;
 
+use Admin\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
@@ -16,7 +17,7 @@ use Inertia\Response;
 
 final class AuthController
 {
-    private const string GUARD  = 'web';
+    private const string GUARD = 'web';
     private const string BROKER = 'users';
 
     public function showLoginForm(): Response
@@ -24,21 +25,16 @@ final class AuthController
         return inertia('auth/login');
     }
 
-    /** @throws ValidationException */
-    public function login(Request $request): RedirectResponse
+    public function login(LoginRequest $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            User::ATTRIBUTE_USERNAME => ['required', 'string'],
-            'password'               => ['required', 'string'],
-        ]);
-        if (! Auth::guard(self::GUARD)->attempt($credentials, $request->boolean('remember'))) {
+        if (Auth::guard(self::GUARD)->attempt($request->validated(), $request->boolean('remember')) === false) {
             throw ValidationException::withMessages([
-                User::ATTRIBUTE_USERNAME => [__('auth.failed')],
+                User::ATTRIBUTE_EMAIL => [ __('auth.failed') ],
             ]);
         }
         $request->session()->regenerate();
 
-        return redirect('/admin');
+        return to_route('admin.dashboard');
     }
 
     public function logout(Request $request): RedirectResponse
@@ -58,14 +54,14 @@ final class AuthController
     public function sendResetLinkEmail(Request $request): RedirectResponse
     {
         $request->validate([
-            User::ATTRIBUTE_EMAIL => ['required', 'email'],
+            User::ATTRIBUTE_EMAIL => [ 'required', 'email' ],
         ]);
         $response = Password::broker(self::BROKER)->sendResetLink(
             $request->only(User::ATTRIBUTE_EMAIL),
         );
         if ($response !== Password::RESET_LINK_SENT) {
             throw ValidationException::withMessages([
-                User::ATTRIBUTE_EMAIL => [__($response)],
+                User::ATTRIBUTE_EMAIL => [ __($response) ],
             ]);
         }
         flash()->success('Sie erhalten per E-Mail einen Link, mit dem Sie ein neues Passwort vergeben können.');
@@ -84,13 +80,13 @@ final class AuthController
     public function reset(Request $request): RedirectResponse
     {
         $request->validate([
-            User::ATTRIBUTE_EMAIL    => ['required', 'email'],
-            User::ATTRIBUTE_PASSWORD => ['required', 'between:8,48', 'confirmed'],
-            'token'                  => ['required'],
+            User::ATTRIBUTE_EMAIL    => [ 'required', 'email' ],
+            User::ATTRIBUTE_PASSWORD => [ 'required', 'between:8,48', 'confirmed' ],
+            'token'                  => [ 'required' ],
         ]);
         $response = Password::broker(self::BROKER)->reset(
             $request->only(User::ATTRIBUTE_EMAIL, User::ATTRIBUTE_PASSWORD, 'password_confirmation', 'token'),
-            function (User $user, string $password): void {
+            function(User $user, string $password): void {
                 $user->update([
                     User::ATTRIBUTE_PASSWORD       => $password,
                     User::ATTRIBUTE_REMEMBER_TOKEN => Str::random(100),
@@ -101,7 +97,7 @@ final class AuthController
         );
         if ($response !== Password::PASSWORD_RESET) {
             throw ValidationException::withMessages([
-                User::ATTRIBUTE_EMAIL => [__($response)],
+                User::ATTRIBUTE_EMAIL => [ __($response) ],
             ]);
         }
         flash()->success('Passwort erfolgreich zurückgesetzt.');
