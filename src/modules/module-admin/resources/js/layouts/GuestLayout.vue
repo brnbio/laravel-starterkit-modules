@@ -18,7 +18,9 @@ const layout = useLayoutProps({
             <Link :href="dashboard()" class="fixed top-0 left-0 p-3">
                 <AppLogo :height="30" />
             </Link>
-            <slot />
+            <div class="flex flex-col gap-8">
+                <slot />
+            </div>
         </div>
     </div>
 

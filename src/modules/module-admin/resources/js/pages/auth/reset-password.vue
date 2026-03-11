@@ -1,12 +1,8 @@
 <script setup lang="ts">
 
-import { Heading } from "@/components";
-import { FormPassword, FormProvider } from "@/components/forms";
-import { Button } from "@/components/ui/button";
-import { FieldDescription, FieldGroup, FieldSet } from "@/components/ui/field";
-import { Spinner } from "@/components/ui/spinner";
-import { GuestLayout } from "@/layouts";
-import { useForm } from "@inertiajs/vue3";
+import { store } from "@/wayfinder/routes/admin/password";
+import GuestLayout from "@admin/layouts/GuestLayout.vue";
+import { setLayoutProps, useForm } from "@inertiajs/vue3";
 
 const props = defineProps<{
     email: string;
@@ -15,48 +11,44 @@ const props = defineProps<{
 
 const title = "Neues Passwort erstellen";
 
-const form = useForm({
+const form = useForm("post", store.url(), {
     email: props.email,
     token: props.token,
     password: null,
     password_confirmation: null,
 });
 
-const submit = () => {
-    form.post(route("admin.password.store", [ props.token ]), {
-        onFinish: () => {
-            form.reset("password", "password_confirmation");
-        },
-    });
-};
+defineOptions({
+    layout: GuestLayout
+});
+
+setLayoutProps({
+    title: title,
+});
 
 </script>
 
 <template>
 
-    <GuestLayout :title>
-        <div class="flex flex-col gap-8">
-            <Heading :title />
-            <FormProvider :form>
-                <form @submit.prevent="submit">
-                    <FieldSet>
-                        <FieldDescription>
-                            Bitte geben Sie Ihr neues Passwort zweimal ein. Das Passwort muss mindestens 8 Zeichen lang sein.
-                        </FieldDescription>
-                        <FieldGroup>
-                            <FormPassword name="password" label="Neues Passwort" />
-                            <FormPassword name="password_confirmation" label="Neues Passwort bestätigen" />
-                            <div>
-                                <Button type="submit" :disabled="form.processing">
-                                    Passwort speichern
-                                    <Spinner v-if="form.processing" />
-                                </Button>
-                            </div>
-                        </FieldGroup>
-                    </FieldSet>
-                </form>
-            </FormProvider>
-        </div>
-    </GuestLayout>
+    <Heading :title />
+    <FormProvider :form>
+        <form @submit.prevent="form.submit()">
+            <FieldSet>
+                <FieldDescription>
+                    Bitte geben Sie Ihr neues Passwort zweimal ein. Das Passwort muss mindestens 8 Zeichen lang sein.
+                </FieldDescription>
+                <FieldGroup>
+                    <FormPassword name="password" label="Neues Passwort" />
+                    <FormPassword name="password_confirmation" label="Neues Passwort bestätigen" />
+                    <div>
+                        <Button type="submit" :disabled="form.processing">
+                            Passwort speichern
+                            <Spinner v-if="form.processing" />
+                        </Button>
+                    </div>
+                </FieldGroup>
+            </FieldSet>
+        </form>
+    </FormProvider>
 
 </template>

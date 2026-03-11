@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Admin\Http\Controllers;
 
+use Admin\Http\Requests\ForgotPasswordRequest;
 use Admin\Http\Requests\LoginRequest;
+use Admin\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
 use Inertia\Response;
 
 final class AuthController
@@ -43,7 +46,7 @@ final class AuthController
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return to_route('admin.dashboard');
     }
 
     public function showForgotPasswordForm(): Response
@@ -51,20 +54,15 @@ final class AuthController
         return inertia('auth/forgot-password');
     }
 
-    public function sendResetLinkEmail(Request $request): RedirectResponse
+    public function sendResetLinkEmail(ForgotPasswordRequest $request): RedirectResponse
     {
-        $request->validate([
-            User::ATTRIBUTE_EMAIL => [ 'required', 'email' ],
-        ]);
-        $response = Password::broker(self::BROKER)->sendResetLink(
-            $request->only(User::ATTRIBUTE_EMAIL),
-        );
+        $response = Password::broker(self::BROKER)->sendResetLink($request->validated());
         if ($response !== Password::RESET_LINK_SENT) {
             throw ValidationException::withMessages([
                 User::ATTRIBUTE_EMAIL => [ __($response) ],
             ]);
         }
-        flash()->success('Sie erhalten per E-Mail einen Link, mit dem Sie ein neues Passwort vergeben können.');
+        Inertia::flash('success', 'Sie erhalten per E-Mail einen Link, mit dem Sie ein neues Passwort vergeben können.');
 
         return redirect('/admin/forgot-password');
     }
@@ -77,19 +75,14 @@ final class AuthController
         ]);
     }
 
-    public function reset(Request $request): RedirectResponse
+    public function reset(ResetPasswordRequest $request): RedirectResponse
     {
-        $request->validate([
-            User::ATTRIBUTE_EMAIL    => [ 'required', 'email' ],
-            User::ATTRIBUTE_PASSWORD => [ 'required', 'between:8,48', 'confirmed' ],
-            'token'                  => [ 'required' ],
-        ]);
         $response = Password::broker(self::BROKER)->reset(
-            $request->only(User::ATTRIBUTE_EMAIL, User::ATTRIBUTE_PASSWORD, 'password_confirmation', 'token'),
+            $request->validated(),
             function(User $user, string $password): void {
                 $user->update([
                     User::ATTRIBUTE_PASSWORD       => $password,
-                    User::ATTRIBUTE_REMEMBER_TOKEN => Str::random(100),
+                    User::ATTRIBUTE_REMEMBER_TOKEN => Str::random(32),
                 ]);
                 event(new PasswordReset($user));
                 Auth::guard(self::GUARD)->login($user);
@@ -100,8 +93,8 @@ final class AuthController
                 User::ATTRIBUTE_EMAIL => [ __($response) ],
             ]);
         }
-        flash()->success('Passwort erfolgreich zurückgesetzt.');
+        Inertia::flash('success', 'Passwort erfolgreich zurückgesetzt.');
 
-        return redirect('/admin');
+        return to_route('admin.dashboard');
     }
 }
