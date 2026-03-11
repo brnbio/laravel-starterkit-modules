@@ -1,23 +1,24 @@
 <script setup lang="ts">
 
-import { Toaster } from "@/components/ui/sonner";
-import { useAppearance } from "@/composables/useAppearance";
-import type { FlashMessage } from "@/types/index.d";
+import "vue-sonner/style.css";
 import { usePage } from "@inertiajs/vue3";
 import { onMounted, watch } from "vue";
-import { toast } from "vue-sonner";
+import { toast, Toaster } from "vue-sonner";
+
+interface FlashMessage {
+    level: "success" | "info" | "warning" | "error";
+    message: string;
+}
 
 const page = usePage();
 
-const { appearance } = useAppearance();
-
-function showFlashMessages(messages: FlashMessage[] | null | undefined) {
+const showFlashMessages = (messages: FlashMessage[] | null | undefined) => {
     messages?.forEach((message) => {
         if (message.level === "success") {
             toast.success("Erfolgreich", { description: message.message });
             return;
         }
-        if (message.level === "danger") {
+        if (message.level === "error") {
             toast.error("Fehler", { description: message.message });
             return;
         }
@@ -32,14 +33,14 @@ function showFlashMessages(messages: FlashMessage[] | null | undefined) {
 
         return toast.message(message.message);
     });
-}
+};
 
 onMounted(() => {
-    showFlashMessages(page.props.flash as FlashMessage[]);
+    showFlashMessages(page.flash.flash_notification as FlashMessage[]);
 });
 
 watch(
-    () => page.props.flash,
+    () => page.flash.flash_notification,
     (messages) => showFlashMessages(messages as FlashMessage[]),
 );
 
@@ -47,6 +48,6 @@ watch(
 
 <template>
 
-    <Toaster rich-colors :expand="true" position="bottom-right" :theme="appearance" />
+    <Toaster rich-colors :expand="true" position="bottom-right" />
 
 </template>

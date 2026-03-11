@@ -4,6 +4,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import type { BreadcrumbItemType } from "@/types";
 import AppSidebar from "@admin/layouts/components/AppSidebar.vue";
 import AppSidebarHeader from "@admin/layouts/components/AppSidebarHeader.vue";
+import FlashMessages from "@admin/layouts/components/FlashMessages.vue";
 import { Head, usePage } from "@inertiajs/vue3";
 
 defineProps<{
@@ -27,5 +28,6 @@ const isOpen: boolean = usePage().props.sidebarOpen;
             </main>
         </SidebarInset>
     </SidebarProvider>
+    <FlashMessages />
 
 </template>
