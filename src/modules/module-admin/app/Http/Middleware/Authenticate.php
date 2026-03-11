@@ -7,14 +7,13 @@ namespace Admin\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 final class Authenticate
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next): mixed
     {
         if (Auth::guard('web')->check() === false) {
-            return redirect('/admin/login');
+            return to_route('admin.login');
         }
 
         return $next($request);

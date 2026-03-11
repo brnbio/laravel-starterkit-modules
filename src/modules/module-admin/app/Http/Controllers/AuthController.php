@@ -32,7 +32,7 @@ final class AuthController
     {
         if (Auth::guard(self::GUARD)->attempt($request->validated(), $request->boolean('remember')) === false) {
             throw ValidationException::withMessages([
-                User::ATTRIBUTE_EMAIL => [ __('auth.failed') ],
+                User::ATTRIBUTE_EMAIL => [__('auth.failed')],
             ]);
         }
         $request->session()->regenerate();
@@ -59,7 +59,7 @@ final class AuthController
         $response = Password::broker(self::BROKER)->sendResetLink($request->validated());
         if ($response !== Password::RESET_LINK_SENT) {
             throw ValidationException::withMessages([
-                User::ATTRIBUTE_EMAIL => [ __($response) ],
+                User::ATTRIBUTE_EMAIL => [__($response)],
             ]);
         }
         Inertia::flash('success', 'Sie erhalten per E-Mail einen Link, mit dem Sie ein neues Passwort vergeben können.');
@@ -77,6 +77,7 @@ final class AuthController
 
     public function reset(ResetPasswordRequest $request): RedirectResponse
     {
+        /** @var string $response */
         $response = Password::broker(self::BROKER)->reset(
             $request->validated(),
             function(User $user, string $password): void {
@@ -90,7 +91,7 @@ final class AuthController
         );
         if ($response !== Password::PASSWORD_RESET) {
             throw ValidationException::withMessages([
-                User::ATTRIBUTE_EMAIL => [ __($response) ],
+                User::ATTRIBUTE_EMAIL => [__($response)],
             ]);
         }
         Inertia::flash('success', 'Passwort erfolgreich zurückgesetzt.');

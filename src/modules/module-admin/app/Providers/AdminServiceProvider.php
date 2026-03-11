@@ -20,12 +20,12 @@ final class AdminServiceProvider extends ServiceProvider
 
     private function routes(): void
     {
-        Route::middleware([ 'web', HandleInertiaRequests::class ])
+        Route::middleware(['web', HandleInertiaRequests::class])
             ->prefix('admin')
             ->name('admin.')
             ->group(__DIR__ . '/../../routes/web.php');
 
-        ResetPassword::createUrlUsing(function(User $notifiable, string $token) {
+        ResetPassword::createUrlUsing(function(User $notifiable, string $token) { // @phpstan-ignore-line
             return route('admin.password.reset', [
                 'email' => $notifiable->getEmailForPasswordReset(),
                 'token' => $token,

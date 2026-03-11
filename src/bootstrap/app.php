@@ -11,8 +11,8 @@ use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting()
     ->withMiddleware(function(Middleware $middleware) {
-        $middleware->web([ AddLinkHeadersForPreloadedAssets::class ]);
+        $middleware->web([AddLinkHeadersForPreloadedAssets::class]);
     })
-    ->withProviders([ AppServiceProvider::class ])
+    ->withProviders([AppServiceProvider::class])
     ->withExceptions(function(Exceptions $exceptions) {})
     ->create();

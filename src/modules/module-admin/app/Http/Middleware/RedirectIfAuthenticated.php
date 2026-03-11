@@ -7,14 +7,13 @@ namespace Admin\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 final class RedirectIfAuthenticated
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next): mixed
     {
         if (Auth::guard('web')->check()) {
-            return redirect('/admin');
+            return to_route('admin.dashboard');
         }
 
         return $next($request);
