@@ -1,23 +1,21 @@
 <script lang="ts" setup>
-import { MoreHoriz } from "@brnbio/vue-material-design-icons";
-import type { HTMLAttributes } from 'vue'
-import { cn } from '@/lib/utils'
+
+import { cn } from "@/lib/utils";
+import type { HTMLAttributes } from "vue";
 
 const props = defineProps<{
-  class?: HTMLAttributes['class']
-}>()
+    class?: HTMLAttributes["class"]
+}>();
+
 </script>
 
 <template>
-  <span
-    data-slot="breadcrumb-ellipsis"
-    role="presentation"
-    aria-hidden="true"
-    :class="cn('flex size-9 items-center justify-center', props.class)"
-  >
-    <slot>
-      <MoreHoriz class="size-4" />
-    </slot>
-    <span class="sr-only">More</span>
-  </span>
+
+    <span data-slot="breadcrumb-ellipsis" role="presentation" aria-hidden="true" :class="cn('flex size-9 items-center justify-center', props.class)">
+        <slot>
+            <IconMaterialSymbolsMoreHoriz class="size-4" />
+        </slot>
+        <span class="sr-only">More</span>
+    </span>
+
 </template>

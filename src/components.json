@@ -15,5 +15,5 @@
         "ui": "@/components/ui",
         "lib": "@/lib"
     },
-    "iconLibrary": "@brnbio/vue-material-design-icons"
+    "iconLibrary": "unplugin-icons"
 }
