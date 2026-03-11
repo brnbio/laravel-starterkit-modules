@@ -28,6 +28,7 @@
         "skipLibCheck": true
     },
     "include": [
+        "components.d.ts",
         "vite.config.ts",
         "resources/js/**/*.ts",
         "resources/js/**/*.d.ts",
