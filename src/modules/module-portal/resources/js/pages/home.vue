@@ -5,5 +5,6 @@
 <template>
 
     <Heading title="Startseite" />
+    <IconMaterialSymbolsHomeOutlineRounded />
 
 </template>

@@ -1,0 +1,10 @@
+@import "@fontsource/noto-sans/latin.css";
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@layer utilities {
+    body,
+    html {
+        --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif;
+    }
+}

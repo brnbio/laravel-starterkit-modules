@@ -13,7 +13,7 @@ final class Authenticate
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (! Auth::guard('web')->check()) {
+        if (Auth::guard('web')->check() === false) {
             return redirect('/admin/login');
         }
 
