@@ -2,29 +2,34 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Account;
+namespace Admin\Http\Requests;
 
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 
-final class ProfileUpdateRequest extends FormRequest
+final class RegisterRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            User::ATTRIBUTE_NAME  => [
+            User::ATTRIBUTE_NAME     => [
                 'required',
                 'string',
                 'max:255',
             ],
-            User::ATTRIBUTE_EMAIL => [
+            User::ATTRIBUTE_EMAIL    => [
                 'required',
                 'string',
-                'lowercase',
                 'email',
                 'max:255',
-                Rule::unique(User::class)->ignore($this->user()?->id),
+                Rule::unique(User::TABLE),
+            ],
+            User::ATTRIBUTE_PASSWORD => [
+                'required',
+                'string',
+                Password::defaults(),
             ],
         ];
     }

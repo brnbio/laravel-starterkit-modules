@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests;
+namespace Admin\Http\Requests\Account;
 
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-final class ForgotPasswordRequest extends FormRequest
+final class DeleteUserRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            User::ATTRIBUTE_EMAIL => [
+            User::ATTRIBUTE_PASSWORD => [
                 'required',
-                'email',
+                'current_password',
             ],
         ];
     }

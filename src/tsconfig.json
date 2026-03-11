@@ -9,7 +9,8 @@
         "moduleResolution": "bundler",
         "paths": {
             "@/*": [ "./resources/js/*" ],
-            "ziggy-js": [ "./vendor/tightenco/ziggy" ]
+            "@portal/*": [ "./modules/module-portal/resources/js/*" ],
+            "@admin/*": [ "./modules/module-admin/resources/js/*" ]
         },
         "types": [
             "vite/client",
@@ -27,8 +28,12 @@
         "skipLibCheck": true
     },
     "include": [
+        "vite.config.ts",
         "resources/js/**/*.ts",
         "resources/js/**/*.d.ts",
-        "resources/js/**/*.vue"
+        "resources/js/**/*.vue",
+        "modules/**/resources/js/**/*.ts",
+        "modules/**/resources/js/**/*.d.ts",
+        "modules/**/resources/js/**/*.vue"
     ]
 }

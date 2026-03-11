@@ -21,12 +21,12 @@ Route::middleware('auth')->group(function ()
     Route::get ('/', Controllers\DashboardController::class)->name('dashboard');
     Route::post('/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
 
-    Route::get   ('/account', [Controllers\AccountController::class, 'edit'])->name('account.edit');
-    Route::patch ('/account', [Controllers\AccountController::class, 'update'])->name('account.update');
-    Route::delete('/account', [Controllers\AccountController::class, 'destroy'])->name('account.destroy');
-    Route::get   ('/account/password', [Controllers\AccountController::class, 'editPassword'])->name('account.password');
-    Route::patch ('/account/password', [Controllers\AccountController::class, 'updatePassword'])->middleware('throttle:6,1')->name('account.password.update');
-    Route::get   ('/account/2fa', [Controllers\AccountController::class, 'twoFactorAuthentication'])->name('account.2fa');
-    Route::get   ('/account/appearance', [Controllers\AccountController::class, 'appearance'])->name('account.appearance');
+    Route::get   ('/account', [\Admin\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
+    Route::patch ('/account', [\Admin\Http\Controllers\AccountController::class, 'update'])->name('account.update');
+    Route::delete('/account', [\Admin\Http\Controllers\AccountController::class, 'destroy'])->name('account.destroy');
+    Route::get   ('/account/password', [\Admin\Http\Controllers\AccountController::class, 'editPassword'])->name('account.password');
+    Route::patch ('/account/password', [\Admin\Http\Controllers\AccountController::class, 'updatePassword'])->middleware('throttle:6,1')->name('account.password.update');
+    Route::get   ('/account/2fa', [\Admin\Http\Controllers\AccountController::class, 'twoFactorAuthentication'])->name('account.2fa');
+    Route::get   ('/account/appearance', [\Admin\Http\Controllers\AccountController::class, 'appearance'])->name('account.appearance');
 
 });

@@ -2,15 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace Admin\Http\Controllers;
 
-use App\Http\Requests\Account\DeleteUserRequest;
-use App\Http\Requests\Account\ProfileUpdateRequest;
-use App\Http\Requests\Account\TwoFactorAuthenticationRequest;
-use App\Http\Requests\Account\UpdatePasswordRequest;
+use Admin\Http\Requests\Account\DeleteUserRequest;
+use Admin\Http\Requests\Account\ProfileUpdateRequest;
+use Admin\Http\Requests\Account\TwoFactorAuthenticationRequest;
+use Admin\Http\Requests\Account\UpdatePasswordRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
+
+use function App\Http\Controllers\flash;
 
 final class AccountController
 {

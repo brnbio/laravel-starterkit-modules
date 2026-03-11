@@ -1,9 +1,11 @@
 <script setup lang="ts">
 
+import Heading from "@/components/Heading.vue";
+
 </script>
 
 <template>
 
-    <h1>Startseite</h1>
+    <Heading title="Startseite" />
 
 </template>
