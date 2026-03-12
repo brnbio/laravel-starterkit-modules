@@ -1,10 +1,17 @@
 <script setup lang="ts">
 
 import { useInitials } from "@/composables/useInitials";
+import { BreadcrumbItem } from "@/types";
+import Breadcrumbs from "@admin/layouts/components/Breadcrumbs.vue";
 import { Link, usePage } from "@inertiajs/vue3";
 import { logout } from "@/wayfinder/routes/admin";
 
+defineProps<{
+    breadcrumbs: BreadcrumbItem[];
+}>();
+
 const page = usePage();
+
 const user = page.props.user;
 
 const { getInitials } = useInitials();
@@ -16,9 +23,9 @@ const { getInitials } = useInitials();
     <header class="flex h-16 shrink-0 items-center justify-between gap-2 border-b border-sidebar-border/70 px-6 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 md:px-4">
         <div class="flex items-center gap-2">
             <SidebarTrigger class="-ml-1" />
-            <!--            <template v-if="breadcrumbs && breadcrumbs.length > 0">-->
-            <!--                <Breadcrumbs :breadcrumbs="breadcrumbs" />-->
-            <!--            </template>-->
+            <template v-if="breadcrumbs && breadcrumbs.length > 0">
+                <Breadcrumbs :breadcrumbs="breadcrumbs" />
+            </template>
         </div>
         <DropdownMenu :modal="false">
             <DropdownMenuTrigger as-child>

@@ -5,7 +5,7 @@ import type { BreadcrumbItemType } from "@/types";
 import AppSidebar from "@admin/layouts/components/AppSidebar.vue";
 import AppSidebarHeader from "@admin/layouts/components/AppSidebarHeader.vue";
 import FlashMessages from "@admin/layouts/components/FlashMessages.vue";
-import { Head, usePage } from "@inertiajs/vue3";
+import { Head, useLayoutProps, usePage } from "@inertiajs/vue3";
 
 defineProps<{
     title?: string;
@@ -14,15 +14,20 @@ defineProps<{
 
 const isOpen: boolean = usePage().props.sidebarOpen;
 
+const layout = useLayoutProps({
+    title: "",
+    breadcrumbs: [],
+})
+
 </script>
 
 <template>
 
-    <Head v-if="title" :title />
+    <Head :title="layout.title" />
     <SidebarProvider :default-open="isOpen">
         <AppSidebar />
         <SidebarInset class="overflow-x-hidden">
-            <AppSidebarHeader :breadcrumbs />
+            <AppSidebarHeader :breadcrumbs="layout.breadcrumbs" />
             <main class="mx-auto w-full max-w-[1920px] px-8 pt-10 pb-20 flex flex-col gap-8">
                 <slot />
             </main>

@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Inertia\Inertia;
 use Inertia\Response;
 
 final class AuthController
@@ -62,7 +61,7 @@ final class AuthController
                 User::ATTRIBUTE_EMAIL => [__($response)],
             ]);
         }
-        Inertia::flash('success', 'Sie erhalten per E-Mail einen Link, mit dem Sie ein neues Passwort vergeben können.');
+        flash()->success('Sie erhalten per E-Mail einen Link, mit dem Sie ein neues Passwort vergeben können.');
 
         return redirect('/admin/forgot-password');
     }
@@ -94,7 +93,7 @@ final class AuthController
                 User::ATTRIBUTE_EMAIL => [__($response)],
             ]);
         }
-        Inertia::flash('success', 'Passwort erfolgreich zurückgesetzt.');
+        flash()->success('Passwort erfolgreich zurückgesetzt.');
 
         return to_route('admin.dashboard');
     }

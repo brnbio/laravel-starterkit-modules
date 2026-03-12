@@ -24,7 +24,7 @@ setLayoutProps({
 
     <Heading :title />
     <FormProvider :form>
-        <form @submit.prevent="form.submit()">
+        <form @submit.prevent="form.submit({ onSuccess: () => { form.resetAndClearErrors() }})">
             <FieldSet>
                 <FieldDescription>
                     Bitte geben Sie Ihre E-Mail-Adresse ein. Anweisungen zum

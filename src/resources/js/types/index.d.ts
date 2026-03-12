@@ -3,7 +3,7 @@ import { RouteDefinition } from "@/wayfinder";
 
 export interface BreadcrumbItem {
     title: string;
-    href: string;
+    href: RouteDefinition;
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;

@@ -1,18 +1,21 @@
 <script setup lang="ts">
 
-
+import { BreadcrumbItem } from "@/types";
+import { dashboard } from "@/wayfinder/routes/admin";
 import { setLayoutProps } from "@inertiajs/vue3";
 
 const title = "Dashboard";
 
-setLayoutProps({
-    title: title,
-})
+const breadcrumbs: BreadcrumbItem[] = [
+    { title: title, href: dashboard() },
+];
+
+setLayoutProps({ title: title, breadcrumbs: breadcrumbs });
 
 </script>
 
 <template>
 
-    <h1>Dashboard</h1>
+    <Heading :title />
 
 </template>

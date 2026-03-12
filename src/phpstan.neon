@@ -6,7 +6,8 @@ parameters:
 
     paths:
         - app/
-        - modules/
+        - modules/module-portal/app
+        - modules/module-admin/app
 
     level: max
 

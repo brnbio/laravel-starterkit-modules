@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+import FlashMessages from "@admin/layouts/components/FlashMessages.vue";
 import { Head, Link, useLayoutProps } from "@inertiajs/vue3";
 import { dashboard } from "@/wayfinder/routes/admin";
 import AppLogo from "./components/AppLogo.vue";
@@ -23,5 +24,6 @@ const layout = useLayoutProps({
             </div>
         </div>
     </div>
+    <FlashMessages />
 
 </template>

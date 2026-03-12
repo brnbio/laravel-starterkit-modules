@@ -4,4 +4,4 @@ declare(strict_types=1);
 
 pest()
     ->extend(Tests\TestCase::class)
-    ->in('Feature', '../modules/*/tests/Feature');
+    ->in('Feature', 'Unit', '../modules/*/tests/Feature');

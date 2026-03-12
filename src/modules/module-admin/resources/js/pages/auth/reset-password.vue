@@ -32,7 +32,7 @@ setLayoutProps({
 
     <Heading :title />
     <FormProvider :form>
-        <form @submit.prevent="form.submit()">
+        <form @submit.prevent="form.submit({ onError: () => { form.reset() }})">
             <FieldSet>
                 <FieldDescription>
                     Bitte geben Sie Ihr neues Passwort zweimal ein. Das Passwort muss mindestens 8 Zeichen lang sein.
