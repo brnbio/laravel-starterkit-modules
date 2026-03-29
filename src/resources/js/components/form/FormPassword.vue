@@ -25,25 +25,25 @@ const toggle = () => {
 
 <template>
 
-    <Field>
-        <FieldLabel :for="name" class="flex justify-between">
+    <UiField>
+        <UiFieldLabel :for="name" class="flex justify-between">
             <slot name="label">
                 {{ label }}
             </slot>
-        </FieldLabel>
+        </UiFieldLabel>
         <div class="relative w-full items-center">
-            <Input :id="name" v-bind="$attrs" v-model="form[name]" :type="passwordVisible ? 'text': 'password'" />
-            <span class="absolute end-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer" @click="toggle">
+            <UiInput :id="name" v-bind="$attrs" v-model="form[name]" :type="passwordVisible ? 'text': 'password'" />
+            <span class="absolute inset-e-0 inset-y-0 flex items-center justify-center px-2 cursor-pointer" @click="toggle">
                 <IconMaterialSymbolsVisibilityOffOutline v-if="passwordVisible" :size="16" class="text-muted-foreground" />
                 <IconMaterialSymbolsVisibilityOutline v-else :size="16" class="text-muted-foreground" />
             </span>
         </div>
-        <FieldDescription v-if="description">
+        <UiFieldDescription v-if="description">
             {{ description }}
-        </FieldDescription>
-        <FieldDescription v-show="form.errors[name]" class="text-sm text-red-600 dark:text-red-500">
+        </UiFieldDescription>
+        <UiFieldDescription v-show="form.errors[name]" class="text-sm text-red-600 dark:text-red-500">
             {{ form.errors[name] }}
-        </FieldDescription>
-    </Field>
+        </UiFieldDescription>
+    </UiField>
 
 </template>

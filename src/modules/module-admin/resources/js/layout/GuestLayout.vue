@@ -1,13 +1,15 @@
 <script setup lang="ts">
 
-import FlashMessages from "@admin/layouts/components/FlashMessages.vue";
-import { Head, Link, useLayoutProps } from "@inertiajs/vue3";
-import { dashboard } from "@/wayfinder/routes/admin";
+import { dashboard } from "@/types/wayfinder/routes/admin";
+import FlashMessages from "@admin/layout/components/FlashMessages.vue";
+import { Head, Link } from "@inertiajs/vue3";
 import AppLogo from "./components/AppLogo.vue";
 
-const layout = useLayoutProps({
-    title: ""
-})
+const layout = withDefaults(defineProps<{
+    title?: string;
+}>(), {
+    title: "",
+});
 
 </script>
 

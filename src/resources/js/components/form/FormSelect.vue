@@ -1,7 +1,5 @@
 <script setup lang="ts">
 
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { Option } from "@/types";
 import { InertiaForm } from "@inertiajs/vue3";
 import { computed, inject } from "vue";
@@ -48,29 +46,29 @@ const modelValue = computed({
 
 <template>
 
-    <Field>
-        <FieldLabel v-if="label">
+    <UiField>
+        <UiFieldLabel v-if="label">
             {{ label }}
-        </FieldLabel>
-        <Select :id="name" v-bind="$attrs" v-model="modelValue">
-            <SelectTrigger class="w-full">
+        </UiFieldLabel>
+        <UiSelect :id="name" v-bind="$attrs" v-model="modelValue">
+            <UiSelectTrigger class="w-full">
                 <SelectValue :placeholder />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectItem v-if="!required && modelValue !== null" value=" " class="text-gray-400 hover:text-gray-400" title="Zurücksetzen" @click.stop="modelValue = null">
+            </UiSelectTrigger>
+            <UiSelectContent>
+                <UiSelectItem v-if="!required && modelValue !== null" value=" " class="text-gray-400 hover:text-gray-400" title="Zurücksetzen" @click.stop="modelValue = null">
                     &mdash;
-                </SelectItem>
-                <SelectItem v-for="option in options" :key="option.id" :value="option.id">
+                </UiSelectItem>
+                <UiSelectItem v-for="option in options" :key="option.id" :value="option.id">
                     {{ option.text }}
-                </SelectItem>
-            </SelectContent>
-        </Select>
-        <FieldDescription v-if="description">
+                </UiSelectItem>
+            </UiSelectContent>
+        </UiSelect>
+        <UiFieldDescription v-if="description">
             {{ description }}
-        </FieldDescription>
-        <FieldDescription v-show="form.errors[name]" class="text-sm text-red-600 dark:text-red-500">
+        </UiFieldDescription>
+        <UiFieldDescription v-show="form.errors[name]" class="text-sm text-red-600 dark:text-red-500">
             {{ form.errors[name] }}
-        </FieldDescription>
-    </Field>
+        </UiFieldDescription>
+    </UiField>
 
 </template>

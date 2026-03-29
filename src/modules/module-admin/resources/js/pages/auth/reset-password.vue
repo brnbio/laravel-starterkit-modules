@@ -1,8 +1,13 @@
 <script setup lang="ts">
 
-import { store } from "@/wayfinder/routes/admin/password";
-import GuestLayout from "@admin/layouts/GuestLayout.vue";
+import { store } from "@/types/wayfinder/routes/admin/password";
+import GuestLayout from "@admin/layout/GuestLayout.vue";
 import { setLayoutProps, useForm } from "@inertiajs/vue3";
+
+defineOptions({
+    layout: GuestLayout,
+    inheritAttrs: false
+});
 
 const props = defineProps<{
     email: string;
@@ -18,13 +23,7 @@ const form = useForm("post", store.url(), {
     password_confirmation: null,
 });
 
-defineOptions({
-    layout: GuestLayout
-});
-
-setLayoutProps({
-    title: title,
-});
+setLayoutProps({ title });
 
 </script>
 
@@ -33,21 +32,21 @@ setLayoutProps({
     <Heading :title />
     <FormProvider :form>
         <form @submit.prevent="form.submit({ onError: () => { form.reset() }})">
-            <FieldSet>
-                <FieldDescription>
+            <UiFieldSet>
+                <UiFieldDescription>
                     Bitte geben Sie Ihr neues Passwort zweimal ein. Das Passwort muss mindestens 8 Zeichen lang sein.
-                </FieldDescription>
-                <FieldGroup>
+                </UiFieldDescription>
+                <UiFieldGroup>
                     <FormPassword name="password" label="Neues Passwort" />
                     <FormPassword name="password_confirmation" label="Neues Passwort bestätigen" />
                     <div>
-                        <Button type="submit" :disabled="form.processing">
+                        <UiButton type="submit" :disabled="form.processing">
                             Passwort speichern
-                            <Spinner v-if="form.processing" />
-                        </Button>
+                            <UiSpinner v-if="form.processing" />
+                        </UiButton>
                     </div>
-                </FieldGroup>
-            </FieldSet>
+                </UiFieldGroup>
+            </UiFieldSet>
         </form>
     </FormProvider>
 

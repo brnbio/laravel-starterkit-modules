@@ -1,0 +1,36 @@
+<script setup lang="ts">
+
+import { InertiaForm } from "@inertiajs/vue3";
+import { inject } from "vue";
+
+defineOptions({
+    inheritAttrs: false,
+});
+
+defineProps<{
+    name: string;
+    label?: string;
+    description?: string;
+    placeholder?: string;
+}>();
+
+const form = inject<InertiaForm<any>>("form");
+
+</script>
+
+<template>
+
+    <div class="grid gap-2">
+        <UiLabel v-if="label" :for="name">
+            {{ label }}
+        </UiLabel>
+        <UiTextarea :id="name" v-bind="$attrs" v-model="form[name]" :placeholder="placeholder ?? label" />
+        <UiFieldDescription v-if="description">
+            {{ description }}
+        </UiFieldDescription>
+        <UiFieldDescription v-show="form.errors[name]" class="text-sm text-red-600 dark:text-red-500">
+            {{ form.errors[name] }}
+        </UiFieldDescription>
+    </div>
+
+</template>

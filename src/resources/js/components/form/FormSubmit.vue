@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { InertiaForm } from "@inertiajs/vue3";
 import { inject } from "vue";
@@ -19,11 +18,9 @@ withDefaults(defineProps<{
 
 <template>
 
-    <div>
-        <Button type="submit" :disabled="form.processing" :variant>
-            <Spinner v-if="form.processing" />
-            {{ label }}
-        </Button>
-    </div>
+    <UiButton type="submit" :disabled="form.processing" :variant class="self-start">
+        <Spinner v-if="form.processing" />
+        {{ label }}
+    </UiButton>
 
 </template>

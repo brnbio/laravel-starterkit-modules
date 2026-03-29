@@ -1,9 +1,14 @@
 <script setup lang="ts">
 
-import { login } from "@/wayfinder/routes/admin";
-import { request } from "@/wayfinder/routes/admin/password";
-import GuestLayout from "@admin/layouts/GuestLayout.vue";
+import { login } from "@/types/wayfinder/routes/admin";
+import { request } from "@/types/wayfinder/routes/admin/password";
+import GuestLayout from "@admin/layout/GuestLayout.vue";
 import { Link, setLayoutProps, useForm } from "@inertiajs/vue3";
+
+defineOptions({
+    layout: GuestLayout,
+    inheritAttrs: false
+});
 
 const title = "Anmeldung";
 
@@ -13,13 +18,7 @@ const form = useForm("post", login.url(), {
     remember: true,
 });
 
-defineOptions({
-    layout: GuestLayout
-});
-
-setLayoutProps({
-    title: title,
-});
+setLayoutProps({ title });
 
 </script>
 
@@ -28,7 +27,7 @@ setLayoutProps({
     <Heading :title description="Willkommen zurück! Bitte melden Sie sich an." />
     <FormProvider :form>
         <form @submit.prevent="form.submit()">
-            <FieldGroup>
+            <UiFieldGroup>
                 <FormControl name="email" label="E-Mail-Adresse" type="email" autofocus required />
                 <FormPassword name="password" required>
                     <template #label>
@@ -39,7 +38,7 @@ setLayoutProps({
                     </template>
                 </FormPassword>
                 <FormSubmit label="Anmelden" />
-            </FieldGroup>
+            </UiFieldGroup>
         </form>
     </FormProvider>
 

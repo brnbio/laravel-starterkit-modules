@@ -18,7 +18,7 @@ export default defineConfig({
             refresh: true,
         }),
         wayfinder({
-            path: "resources/js/wayfinder",
+            path: "resources/js/types/wayfinder",
             actions: false
         }),
         tailwindcss(),
@@ -37,6 +37,8 @@ export default defineConfig({
                 "resources/js/components",
                 "modules/*/resources/js/components",
             ],
+            directoryAsNamespace: true,
+            collapseSamePrefixes: true,
             resolvers: [
                 iconsResolver({
                     prefix: "icon",
