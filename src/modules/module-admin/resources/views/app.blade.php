@@ -7,9 +7,9 @@
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     @vite('modules/module-admin/resources/js/admin.ts')
-    @inertiaHead
+    <x-inertia::head />
 </head>
 <body>
-@inertia
+<x-inertia::app />
 </body>
 </html>
