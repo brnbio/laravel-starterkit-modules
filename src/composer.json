@@ -17,7 +17,6 @@
         "barryvdh/laravel-debugbar": "^v4.0",
         "fakerphp/faker": "^v1.23",
         "larastan/larastan": "^v3.9",
-        "laravel/boost": "^2.4",
         "laravel/pint": "^v1.27",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^v8.6",
